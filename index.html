@@ -4,44 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Safe Taxi 🚖</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
   <header>
-    <h1>Safe Taxi 🚖</h1>
-    <p>This is a website to promote the safety and confidence of women and children when boarding a taxi to avoid harassment. It has a map to indicate your location so that qualified taxi drivers can pick you up safely.</p>
+    <h1>🚖 Safe Taxi</h1>
+    <p>Your safety is our priority — Real-time tracking, emergency alerts, and secure rides for women and children.</p>
   </header>
 
   <main>
-    <section id="description">
-      <p>We have a security system with an emergency button, real-time location, audible alerts, and a chat bot with AI trained to solve any doubt and situation. It provides safety information and all the settings of this website for your well-being, which is the most important thing.</p>
+    <section id="mapSection">
+      <h2>📍 Live Map</h2>
+      <div id="map"></div>
+      <p class="info">Track your ride in real-time and let your assigned driver locate you safely.</p>
     </section>
 
-    <div id="map"></div>
-
-    <div class="buttons">
-      <button id="emergency">🚨 Emergency</button>
-      <button id="callTaxi">📞 Call Taxi</button>
-    </div>
-
-    <div class="taxi-numbers">
-      <h2>📞 Taxi Numbers</h2>
+    <section id="drivers">
+      <h2>🚗 Available Taxi Drivers</h2>
       <ul>
-        <li><a href="tel:+18001234567">Taxi 1: +1 800 123 4567</a></li>
-        <li><a href="tel:+18007654321">Taxi 2: +1 800 765 4321</a></li>
-        <li><a href="tel:+18009871234">Taxi 3: +1 800 987 1234</a></li>
+        <li><b>John Doe:</b> <a href="tel:+18091234567">📞 Call</a></li>
+        <li><b>Maria Lopez:</b> <a href="tel:+18099876543">📞 Call</a></li>
+        <li><b>David Johnson:</b> <a href="tel:+18093456789">📞 Call</a></li>
       </ul>
-    </div>
+    </section>
+
+    <section id="emergencySection">
+      <h2>🚨 Emergency</h2>
+      <p>If you feel unsafe, press the button below to activate the alarm and alert nearby authorities.</p>
+      <button id="emergencyBtn">Activate Emergency Alert</button>
+      <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
+    </section>
+
+    <section id="about">
+      <h2>💬 About Safe Taxi</h2>
+      <p>
+        This is a website to promote the safety and confidence of women and children when boarding a taxi to avoid harassment.  
+        It includes a real-time map where passengers can indicate their location so that a verified driver can pick them up without any issue.  
+        Our goal is to restore safety, confidence, and well-being to many women and children.
+      </p>
+      <p>
+        We have a complete safety system with an emergency button, real-time location, audible alerts, and an AI chatbot designed to answer questions and guide users in any situation.
+      </p>
+    </section>
+
+    <section id="chatbot">
+      <h2>🤖 AI Safety Assistant</h2>
+      <p>Ask our AI chatbot for help, safety tips, or information about your trip.</p>
+      <iframe 
+        src="https://claribelgilsosa23-safe-from-earthquake-ai-4e480f0.hf.space" 
+        frameborder="0" 
+        width="100%" 
+        height="500"
+        title="Safe Taxi AI Chatbot">
+      </iframe>
+    </section>
   </main>
 
-  <audio id="alarm" src="assets/alarm.ogg"></audio>
-
   <footer>
-    <p>© 2025 Safe Taxi App</p>
+    <p>© 2025 Safe Taxi — Developed to protect what matters most 💛</p>
   </footer>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
