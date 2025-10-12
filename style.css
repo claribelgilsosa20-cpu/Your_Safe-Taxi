@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  color: #333;
+  text-align: center;
+}
+
+header {
+  background: #4caf50;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+#description {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  background: #f7f7f7;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+#map {
+  height: 500px;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px;
+}
+
+button {
+  padding: 15px 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.3s;
+}
+
+#emergency { background: #e53935; }
+#emergency:hover { background: #c62828; }
+
+#callTaxi { background: #1976d2; }
+#callTaxi:hover { background: #1565c0; }
+
+.taxi-numbers {
+  width: 90%;
+  max-width: 500px;
+  margin: 20px auto 40px;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  text-align: left;
+}
+
+.taxi-numbers h2 {
+  text-align: center;
+  color: #1976d2;
+}
+
+.taxi-numbers ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.taxi-numbers li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.taxi-numbers li a:hover {
+  color: #1976d2;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 10px;
+  background: #4caf50;
+  color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
