@@ -1,62 +1,35 @@
-// ===== Create Map =====
-const map = L.map('map').setView([0,0], 2);
+// Initialize Map
+const map = L.map('map').setView([18.5, -69.9], 8); // Dominican Republic example
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 18,
   attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const alarm = document.getElementById('alarm');
-
-// ===== Taxi Icon =====
-const taxiIcon = L.icon({
-  iconUrl: 'assets/taxi.png',
-  iconSize: [40, 40]
-});
-
-// ===== Real-Time Location =====
-function trackLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition((position) => {
+// Real-time location tracking
+if (navigator.geolocation) {
+  navigator.geolocation.watchPosition(
+    (position) => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
 
-      if (window.currentMarker) map.removeLayer(window.currentMarker);
+      L.marker([lat, lon]).addTo(map)
+        .bindPopup('📍 Your current location')
+        .openPopup();
 
-      window.currentMarker = L.marker([lat, lon], {icon: taxiIcon})
-        .addTo(map)
-        .bindPopup("Your taxi location 🚖").openPopup();
-
-      map.setView([lat, lon], 14);
-    }, (err) => {
-      console.error("Geolocation error:", err);
-    });
-  } else {
-    alert("Geolocation is not supported by your browser.");
-  }
+      map.setView([lat, lon], 13);
+    },
+    () => {
+      alert("⚠️ Unable to get your current location.");
+    }
+  );
+} else {
+  alert("Geolocation is not supported by this browser.");
 }
 
-trackLocation();
-
-// ===== Emergency Button =====
-document.getElementById("emergency").addEventListener("click", () => {
-  alert("🚨 Calling emergency services...");
+// Emergency button logic
+const alarm = document.getElementById("alarm");
+document.getElementById("emergencyBtn").addEventListener("click", () => {
   alarm.play();
+  alert("🚨 Emergency alert activated! Authorities have been notified.");
 });
-
-// ===== Call Taxi Button =====
-document.getElementById("callTaxi").addEventListener("click", () => {
-  alert("📞 Calling nearest taxi...");
-  alarm.play();
-});
-
-// ===== Example Route to Client =====
-function showRoute(lat, lon, clientLat, clientLon) {
-  const clientMarker = L.marker([clientLat, clientLon]).addTo(map)
-    .bindPopup("Client").openPopup();
-
-  const route = L.polyline([[lat, lon], [clientLat, clientLon]], {color: 'blue'}).addTo(map);
-  map.fitBounds(route.getBounds());
-}
-
-// Example usage (replace with real coordinates):
-// showRoute(19.4326, -99.1332, 19.4340, -99.1350);
