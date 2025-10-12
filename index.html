@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safe Taxi 🚖</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <h1>Safe Taxi 🚖</h1>
+    <p>This is a website to promote the safety and confidence of women and children when boarding a taxi to avoid harassment. It has a map to indicate your location so that qualified taxi drivers can pick you up safely.</p>
+  </header>
+
+  <main>
+    <section id="description">
+      <p>We have a security system with an emergency button, real-time location, audible alerts, and a chat bot with AI trained to solve any doubt and situation. It provides safety information and all the settings of this website for your well-being, which is the most important thing.</p>
+    </section>
+
+    <div id="map"></div>
+
+    <div class="buttons">
+      <button id="emergency">🚨 Emergency</button>
+      <button id="callTaxi">📞 Call Taxi</button>
+    </div>
+
+    <div class="taxi-numbers">
+      <h2>📞 Taxi Numbers</h2>
+      <ul>
+        <li><a href="tel:+18001234567">Taxi 1: +1 800 123 4567</a></li>
+        <li><a href="tel:+18007654321">Taxi 2: +1 800 765 4321</a></li>
+        <li><a href="tel:+18009871234">Taxi 3: +1 800 987 1234</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <audio id="alarm" src="assets/alarm.ogg"></audio>
+
+  <footer>
+    <p>© 2025 Safe Taxi App</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
