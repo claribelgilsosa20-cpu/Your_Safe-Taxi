@@ -4,8 +4,103 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Safe Taxi 🚖</title>
-  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f7fb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      color: #007bff;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p, li {
+      font-size: 1.1rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    #map {
+      width: 100%;
+      height: 350px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-color: #dc3545;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #c82333;
+    }
+
+    #chatbot-container {
+      border: 3px dashed #007bff;
+      border-radius: 15px;
+      padding: 1rem;
+      text-align: center;
+      background-color: #e9f2ff;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 850px;
+      height: 450px;
+      border-radius: 12px;
+      border: 2px solid #007bff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #007bff;
+      color: white;
+    }
+
+  </style>
 </head>
 <body>
   <header>
@@ -14,12 +109,14 @@
   </header>
 
   <main>
+    <!-- Map Section -->
     <section id="mapSection">
       <h2>📍 Live Map</h2>
-      <div id="map" style="height: 400px;"></div>
-      <p class="info">Track your ride in real-time and let your assigned driver locate you safely.</p>
+      <div id="map"></div>
+      <p>Track your ride in real-time and let your assigned driver locate you safely.</p>
     </section>
 
+    <!-- Drivers Section -->
     <section id="drivers">
       <h2>🚗 Available Taxi Drivers</h2>
       <ul>
@@ -29,6 +126,7 @@
       </ul>
     </section>
 
+    <!-- Emergency Section -->
     <section id="emergencySection">
       <h2>🚨 Emergency</h2>
       <p>If you feel unsafe, press the button below to activate the alarm and alert nearby authorities.</p>
@@ -36,23 +134,45 @@
       <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
     </section>
 
+    <!-- About Section -->
     <section id="about">
       <h2>💬 About Safe Taxi</h2>
-      <p id="mainDescription"></p>
-      <p id="additionalFeatures"></p>
-      <p id="testimonial"></p>
-      <p id="missionStatement"></p>
+      <p>This website promotes the safety and confidence of women and children when boarding a taxi to avoid harassment. </p>
+      <p>It includes a real-time map where passengers can indicate their location so that a verified driver can pick them up safely.</p>
+      <p>Our system combines real-time tracking, emergency alerts, audible alarms, and an AI chatbot trained to provide safety guidance.</p>
     </section>
 
-    <section id="chatbot">
+    <!-- Additional Features -->
+    <section id="features">
+      <h2>✨ Features</h2>
+      <ul>
+        <li>Real-time location tracking for passengers and drivers.</li>
+        <li>Emergency button for immediate help.</li>
+        <li>Direct call buttons for taxi drivers and emergency services.</li>
+        <li>Audible alerts for urgent situations.</li>
+        <li>AI chatbot trained to answer safety-related questions.</li>
+        <li>Map showing exact location and route for safe pick-up.</li>
+        <li>First aid instructions in case of emergencies.</li>
+      </ul>
+    </section>
+
+    <!-- Testimonial -->
+    <section id="testimonial">
+      <h2>🌟 Testimonial</h2>
+      <p>"Safe Taxi gave me confidence to travel safely. I feel protected knowing I can alert the authorities or my driver in an emergency."</p>
+    </section>
+
+    <!-- Mission Statement -->
+    <section id="mission">
+      <h2>🎯 Mission Statement</h2>
+      <p>Our mission is to restore security, confidence, and well-being to women and children everywhere by providing a safe, reliable, and intelligent taxi service.</p>
+    </section>
+
+    <!-- Chatbot -->
+    <section id="chatbot-container">
       <h2>🤖 AI Safety Assistant</h2>
       <p>Ask our AI chatbot for help, safety tips, or information about your trip.</p>
-      <iframe
-        src="https://claribelgilsosa23-your-safe-taxi.hf.space"
-        frameborder="0"
-        width="850"
-        height="450"
-      ></iframe>
+      <iframe src="https://claribelgilsosa23-your-safe-taxi.hf.space" frameborder="0"></iframe>
     </section>
   </main>
 
@@ -60,50 +180,11 @@
     <p>© 2025 Safe Taxi — Developed to protect what matters most 💛</p>
   </footer>
 
-  <!-- Leaflet JS -->
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <!-- Script JS -->
   <script>
-    // Main Description / About Safe Taxi
-    const mainDescription = `
-This is a website to promote the safety and confidence of women and children when boarding a taxi to avoid harassment. 
-Our website has a map where users can indicate their location so that a qualified taxi driver for this job can pick them up without any problem. 
-Our goal is to restore security, confidence, and well-being to many women and children.
-
-We have a security system with an emergency button, real-time location, audible alerts, and a chat bot with AI trained to solve any doubts and situations. 
-It provides safety information and all the settings of this website for your well-being, which is our top priority.
-`;
-
-    // Additional Features / Information
-    const additionalFeatures = `
-- Real-time location tracking for both passengers and drivers.
-- Emergency button for immediate help.
-- Direct call buttons for taxi drivers and emergency services.
-- Audible alerts for urgent situations.
-- Chat bot trained to answer safety-related questions.
-- Map showing your exact location and route for safe pick-up.
-- First aid instructions in case of emergencies.
-`;
-
-    // Testimonial Section
-    const testimonial = `
-"Safe Taxi gave me confidence to travel safely. I feel protected knowing I can alert the authorities or my driver in an emergency."
-`;
-
-    // Mission Statement
-    const missionStatement = `
-Our mission is to ensure that every woman and child can travel safely and confidently, knowing they have access to real-time support, guidance, and security measures.
-`;
-
-    // Insert text into HTML
-    document.getElementById("mainDescription").innerText = mainDescription;
-    document.getElementById("additionalFeatures").innerText = additionalFeatures;
-    document.getElementById("testimonial").innerText = testimonial;
-    document.getElementById("missionStatement").innerText = missionStatement;
-
     // Initialize Map
-    const map = L.map('map').setView([18.5, -69.9], 8); // Dominican Republic
+    const map = L.map('map').setView([18.5, -69.9], 8); // Dominican Republic example
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; OpenStreetMap contributors'
@@ -115,16 +196,12 @@ Our mission is to ensure that every woman and child can travel safely and confid
         (position) => {
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
-
           L.marker([lat, lon]).addTo(map)
             .bindPopup('📍 Your current location')
             .openPopup();
-
           map.setView([lat, lon], 13);
         },
-        () => {
-          alert("⚠️ Unable to get your current location.");
-        }
+        () => { alert("⚠️ Unable to get your current location."); }
       );
     } else {
       alert("Geolocation is not supported by this browser.");
@@ -138,13 +215,5 @@ Our mission is to ensure that every woman and child can travel safely and confid
     });
   </script>
 
-  <!-- Widget de traducción -->
-  <div id="google_translate_element"></div>
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-</html>>
+</html>
