@@ -61,6 +61,5 @@ It allows users to view their live location, trigger emergency alerts, and send 
 ## Author
 
 **Claribel Gil Sosa**  
-Student of Bachelor’s in Foreign Languages (UAPA)  
 Passionate about innovation, technology, and public safety.  
 [GitHub Profile](https://github.com/ClaribelGilsosa20-cpu)
