@@ -6,61 +6,34 @@
 <title>Safe Taxi</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0; padding: 0;
-    background-color: #f2f7fb; color: #333;
-  }
-
-  header {
-    background-color: #007bff; color: white;
-    text-align: center; padding: 2rem 1rem;
-  }
-
-  header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-
-  main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
-
-  section {
-    background-color: white; border-radius: 12px;
-    padding: 2rem; margin-bottom: 2rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-
-  section h2 { color: #007bff; margin-bottom: 1rem; }
-
-  #map { width: 100%; height: 350px; border-radius: 12px; margin-bottom: 1rem; }
-
-  button {
-    background-color: #dc3545; color: white;
-    padding: 0.8rem 1.2rem; border: none; border-radius: 8px;
-    cursor: pointer; margin-top: 5px; margin-right: 5px;
-  }
-
-  button:hover { background-color: #c82333; }
-
-  iframe { width: 100%; max-width: 850px; height: 450px; border-radius: 12px; border: 2px solid #007bff; }
-
-  #calendar { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-  #calendar th, #calendar td { border: 1px solid #ccc; text-align: center; padding: 10px; }
-  #calendar th { background-color: #007bff; color: white; }
-  .pickupTime { background-color: #ffc107; cursor: pointer; }
-
-  #pickupForm input, #pickupForm button { padding: 0.5rem; margin: 0.2rem; border-radius: 6px; border: 1px solid #ccc; }
-  #pickupForm button { border: none; background-color: #28a745; color: white; cursor: pointer; }
-  #pickupForm button:hover { background-color: #218838; }
-
-  #pickupList { margin-top: 10px; }
-  #pickupList li { margin-bottom: 5px; }
-
-  /* Translator */
-  #google_translate_element { margin-top: 1rem; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background-color:#f2f7fb; color:#333; }
+  header { background-color:#007bff; color:white; text-align:center; padding:2rem 1rem; }
+  header h1 { font-size:2.5rem; margin-bottom:0.5rem; }
+  main { max-width:1100px; margin:2rem auto; padding:0 1rem; }
+  section { background-color:white; border-radius:12px; padding:2rem; margin-bottom:2rem; box-shadow:0 4px 10px rgba(0,0,0,0.1); }
+  section h2 { color:#007bff; margin-bottom:1rem; }
+  p, li { font-size:1.1rem; }
+  ul { padding-left:1.5rem; }
+  #map { width:100%; height:350px; border-radius:12px; margin-bottom:1rem; }
+  button { background-color:#dc3545; color:white; padding:0.8rem 1.2rem; border:none; border-radius:8px; cursor:pointer; margin-top:5px; margin-right:5px; }
+  button:hover { background-color:#c82333; }
+  iframe { width:100%; max-width:850px; height:450px; border-radius:12px; border:2px solid #007bff; }
+  #calendar { width:100%; border-collapse:collapse; margin-top:1rem; }
+  #calendar th, #calendar td { border:1px solid #ccc; text-align:center; padding:10px; }
+  #calendar th { background-color:#007bff; color:white; }
+  #pickupForm input, #pickupForm button { padding:0.5rem; margin:0.2rem; border-radius:6px; border:1px solid #ccc; }
+  #pickupForm button { border:none; background-color:#28a745; color:white; cursor:pointer; }
+  #pickupForm button:hover { background-color:#218838; }
+  #pickupList { margin-top:10px; }
+  #pickupList li { margin-bottom:5px; }
+  #google_translate_element { margin-top:1rem; }
 </style>
 </head>
 <body>
+
 <header>
   <h1>Safe Taxi</h1>
-  <p>Real-time tracking, emergency alerts, and safe rides for women and children.</p>
+  <p>Real-time tracking, emergency alerts, and secure rides for women and children.</p>
 </header>
 
 <main>
@@ -115,6 +88,43 @@
     </div>
   </section>
 
+  <!-- How it works Section -->
+  <section id="howItWorks">
+    <h2>How Safe Taxi Works</h2>
+    <ul>
+      <li>Users register and share their location with verified drivers.</li>
+      <li>Passengers can track the taxi in real-time on the map.</li>
+      <li>Emergency alerts can be triggered anytime if the passenger feels unsafe.</li>
+      <li>Users can schedule pickup times via the calendar.</li>
+      <li>AI chatbot provides tips and safety guidance for passengers.</li>
+    </ul>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits">
+    <h2>Benefits of Using Safe Taxi</h2>
+    <ul>
+      <li>Enhanced safety for women and children.</li>
+      <li>Real-time ride tracking for peace of mind.</li>
+      <li>Instant access to emergency help.</li>
+      <li>Ability to schedule rides in advance.</li>
+      <li>Quick contact with verified taxi drivers.</li>
+    </ul>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section id="testimonial">
+    <h2>Testimonials</h2>
+    <p>"Safe Taxi gave me confidence to travel alone at night. Knowing I could alert authorities if needed is priceless!" - <b>Ana M.</b></p>
+    <p>"Scheduling pickups is so easy, and the drivers are verified. I feel much safer using this service." - <b>Lucía R.</b></p>
+  </section>
+
+  <!-- Purpose Section -->
+  <section id="purpose">
+    <h2>Why We Created Safe Taxi</h2>
+    <p>Safe Taxi was developed to provide women and children with a reliable and secure way to use taxi services, minimizing the risk of harassment and ensuring peace of mind during transportation.</p>
+  </section>
+
   <!-- Chatbot Section -->
   <section id="chatbot-container">
     <h2>AI Safety Assistant</h2>
@@ -134,96 +144,52 @@
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Initialize Map
-  const map = L.map('map').setView([18.5, -69.9], 8);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; OpenStreetMap contributors'
-  }).addTo(map);
-
-  if (navigator.geolocation) {
+  // Map
+  const map = L.map('map').setView([18.5,-69.9],8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18, attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+  if(navigator.geolocation){
     navigator.geolocation.watchPosition(
-      (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
-        L.marker([lat, lon]).addTo(map).bindPopup('Your current location').openPopup();
-        map.setView([lat, lon], 13);
-      },
-      () => { alert("Unable to get your current location."); }
+      (pos)=>{ const lat=pos.coords.latitude; const lon=pos.coords.longitude; L.marker([lat,lon]).addTo(map).bindPopup('Your current location').openPopup(); map.setView([lat,lon],13); },
+      ()=>{ alert("Unable to get your current location."); }
     );
-  } else {
-    alert("Geolocation not supported by this browser.");
-  }
+  } else { alert("Geolocation not supported."); }
 
-  // Emergency button
-  const alarm = document.getElementById("alarm");
-  document.getElementById("emergencyBtn").addEventListener("click", () => {
-    alarm.play();
-    alert("Emergency alert activated!");
-  });
+  // Emergency
+  const alarm=document.getElementById("alarm");
+  document.getElementById("emergencyBtn").addEventListener("click",()=>{ alarm.play(); alert("Emergency alert activated!"); });
 
   // Calendar
   const calendarBody = document.querySelector("#calendar tbody");
   const monthYear = document.getElementById("monthYear");
   const prevMonthBtn = document.getElementById("prevMonth");
   const nextMonthBtn = document.getElementById("nextMonth");
-  let today = new Date();
-  let currentMonth = today.getMonth();
-  let currentYear = today.getFullYear();
-
-  function renderCalendar(month, year) {
-    calendarBody.innerHTML = "";
-    monthYear.textContent = `${year}-${month+1}`;
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month+1, 0).getDate();
-    let row = document.createElement("tr");
+  let today = new Date(), currentMonth = today.getMonth(), currentYear = today.getFullYear();
+  function renderCalendar(month, year){
+    calendarBody.innerHTML="";
+    monthYear.textContent=`${year}-${month+1}`;
+    const firstDay=new Date(year,month,1).getDay();
+    const daysInMonth=new Date(year,month+1,0).getDate();
+    let row=document.createElement("tr");
     for(let i=0;i<firstDay;i++){ row.appendChild(document.createElement("td")); }
     for(let d=1; d<=daysInMonth; d++){
-      if(row.children.length === 7){
-        calendarBody.appendChild(row);
-        row = document.createElement("tr");
-      }
-      const cell = document.createElement("td");
-      cell.textContent = d;
-      row.appendChild(cell);
+      if(row.children.length===7){ calendarBody.appendChild(row); row=document.createElement("tr"); }
+      const cell=document.createElement("td"); cell.textContent=d; row.appendChild(cell);
     }
     calendarBody.appendChild(row);
   }
-
-  prevMonthBtn.addEventListener("click", () => {
-    currentMonth--;
-    if(currentMonth<0){ currentMonth=11; currentYear--; }
-    renderCalendar(currentMonth,currentYear);
-  });
-
-  nextMonthBtn.addEventListener("click", () => {
-    currentMonth++;
-    if(currentMonth>11){ currentMonth=0; currentYear++; }
-    renderCalendar(currentMonth,currentYear);
-  });
-
+  prevMonthBtn.addEventListener("click",()=>{ currentMonth--; if(currentMonth<0){ currentMonth=11; currentYear--; } renderCalendar(currentMonth,currentYear); });
+  nextMonthBtn.addEventListener("click",()=>{ currentMonth++; if(currentMonth>11){ currentMonth=0; currentYear++; } renderCalendar(currentMonth,currentYear); });
   renderCalendar(currentMonth,currentYear);
 
   // Pickup Form
-  const pickupForm = document.getElementById("pickupForm");
-  const pickupList = document.getElementById("pickupList");
-
-  pickupForm.addEventListener("submit", e=>{
-    e.preventDefault();
-    const name = document.getElementById("pickupName").value;
-    const time = document.getElementById("pickupTime").value;
-    const li = document.createElement("li");
-    li.textContent = `${name} - ${time}`;
-    pickupList.appendChild(li);
-    pickupForm.reset();
-  });
+  const pickupForm=document.getElementById("pickupForm");
+  const pickupList=document.getElementById("pickupList");
+  pickupForm.addEventListener("submit",e=>{ e.preventDefault(); const name=document.getElementById("pickupName").value; const time=document.getElementById("pickupTime").value; const li=document.createElement("li"); li.textContent=`${name} - ${time}`; pickupList.appendChild(li); pickupForm.reset(); });
 </script>
 
-<!-- Google Translate Script -->
+<!-- Google Translate -->
 <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
+function googleTranslateElementInit(){ new google.translate.TranslateElement({pageLanguage:'en'},'google_translate_element'); }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
