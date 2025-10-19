@@ -1,262 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Safe Taxi</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f2f7fb;
-      color: #333;
-      line-height: 1.6;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Safe Taxi</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    background-color: #f2f7fb; color: #333;
+  }
 
-    header {
-      background-color: #007bff;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
+  header {
+    background-color: #007bff; color: white;
+    text-align: center; padding: 2rem 1rem;
+  }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+  header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
 
-    main {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
+  main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
 
-    section {
-      background-color: white;
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+  section {
+    background-color: white; border-radius: 12px;
+    padding: 2rem; margin-bottom: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
 
-    section h2 {
-      color: #007bff;
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
+  section h2 { color: #007bff; margin-bottom: 1rem; }
 
-    p, li {
-      font-size: 1.1rem;
-    }
+  #map { width: 100%; height: 350px; border-radius: 12px; margin-bottom: 1rem; }
 
-    ul {
-      padding-left: 1.5rem;
-    }
+  button {
+    background-color: #dc3545; color: white;
+    padding: 0.8rem 1.2rem; border: none; border-radius: 8px;
+    cursor: pointer; margin-top: 5px; margin-right: 5px;
+  }
 
-    #map {
-      width: 100%;
-      height: 350px;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
+  button:hover { background-color: #c82333; }
 
-    button {
-      background-color: #dc3545;
-      color: white;
-      padding: 0.8rem 1.2rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      transition: background-color 0.3s;
-      margin-top: 5px;
-      margin-right: 5px;
-    }
+  iframe { width: 100%; max-width: 850px; height: 450px; border-radius: 12px; border: 2px solid #007bff; }
 
-    button:hover {
-      background-color: #c82333;
-    }
+  #calendar { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  #calendar th, #calendar td { border: 1px solid #ccc; text-align: center; padding: 10px; }
+  #calendar th { background-color: #007bff; color: white; }
+  .pickupTime { background-color: #ffc107; cursor: pointer; }
 
-    iframe {
-      width: 100%;
-      max-width: 850px;
-      height: 450px;
-      border-radius: 12px;
-      border: 2px solid #007bff;
-    }
+  #pickupForm input, #pickupForm button { padding: 0.5rem; margin: 0.2rem; border-radius: 6px; border: 1px solid #ccc; }
+  #pickupForm button { border: none; background-color: #28a745; color: white; cursor: pointer; }
+  #pickupForm button:hover { background-color: #218838; }
 
-    #geminiChat textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin-bottom: 0.5rem;
-      resize: none;
-    }
+  #pickupList { margin-top: 10px; }
+  #pickupList li { margin-bottom: 5px; }
 
-    #geminiOutput {
-      margin-top:10px;
-      background:#f1f1f1;
-      padding:10px;
-      border-radius:8px;
-      max-height:300px;
-      overflow-y:auto;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background-color: #007bff;
-      color: white;
-    }
-  </style>
+  /* Translator */
+  #google_translate_element { margin-top: 1rem; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Safe Taxi</h1>
-    <p>Your safety is our priority — Real-time tracking, emergency alerts, and secure rides for women and children.</p>
-  </header>
+<header>
+  <h1>Safe Taxi</h1>
+  <p>Real-time tracking, emergency alerts, and safe rides for women and children.</p>
+</header>
 
-  <main>
-    <!-- Map Section -->
-    <section id="mapSection">
-      <h2>Live Map</h2>
-      <div id="map"></div>
-      <p>Track your ride in real-time and let your assigned driver locate you safely.</p>
-    </section>
+<main>
+  <!-- Map Section -->
+  <section id="mapSection">
+    <h2>Live Map</h2>
+    <div id="map"></div>
+    <p>Track your ride in real-time and let your assigned driver locate you safely.</p>
+  </section>
 
-    <!-- Drivers Section -->
-    <section id="drivers">
-      <h2>Available Taxi Drivers</h2>
-      <ul>
-        <li><b>John Doe:</b> <a href="tel:+18091234567">Call</a></li>
-        <li><b>Maria Lopez:</b> <a href="tel:+18099876543">Call</a></li>
-        <li><b>David Johnson:</b> <a href="tel:+18093456789">Call</a></li>
-      </ul>
-    </section>
+  <!-- Drivers Section -->
+  <section id="drivers">
+    <h2>Available Taxi Drivers</h2>
+    <ul>
+      <li><b>John Doe:</b> <a href="tel:+18091234567">Call</a></li>
+      <li><b>Maria Lopez:</b> <a href="tel:+18099876543">Call</a></li>
+      <li><b>David Johnson:</b> <a href="tel:+18093456789">Call</a></li>
+    </ul>
+  </section>
 
-    <!-- Emergency Section -->
-    <section id="emergencySection">
-      <h2>Emergency</h2>
-      <p>If you feel unsafe, press the button below to activate the alarm and alert nearby authorities.</p>
-      <button id="emergencyBtn">Activate Emergency Alert</button>
-      <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
-    </section>
+  <!-- Emergency Section -->
+  <section id="emergencySection">
+    <h2>Emergency</h2>
+    <p>If you feel unsafe, press the button below to activate the alarm and alert authorities.</p>
+    <button id="emergencyBtn">Activate Emergency Alert</button>
+    <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
+  </section>
 
-    <!-- About Section -->
-    <section id="about">
-      <h2>About Safe Taxi</h2>
-      <p>This website promotes the safety and confidence of women and children when boarding a taxi to avoid harassment.</p>
-      <p>It includes a real-time map where passengers can indicate their location so that a verified driver can pick them up safely.</p>
-      <p>Our system combines real-time tracking, emergency alerts, audible alarms, and AI chat assistants.</p>
-    </section>
+  <!-- Pickup Calendar Section -->
+  <section id="pickupCalendar">
+    <h2>Schedule Your Pickup</h2>
+    <div>
+      <button id="prevMonth">« Previous</button>
+      <span id="monthYear"></span>
+      <button id="nextMonth">Next »</button>
+    </div>
+    <table id="calendar">
+      <thead>
+        <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
-    <!-- Chatbot Section (HF Space) -->
-    <section id="chatbot-container">
-      <h2>AI Safety Assistant</h2>
-      <iframe src="https://claribelgilsosa23-your-safe-taxi.hf.space" frameborder="0"></iframe>
-    </section>
+    <div id="addPickup">
+      <h3>Add Pickup Time</h3>
+      <form id="pickupForm">
+        <input type="text" id="pickupName" placeholder="Your Name" required />
+        <input type="time" id="pickupTime" required />
+        <button type="submit">Add</button>
+      </form>
+      <ul id="pickupList"></ul>
+    </div>
+  </section>
 
-    <!-- Gemini API Chat Section -->
-    <section id="geminiChat">
-      <h2>AI Assistant (Gemini API)</h2>
-      <div>
-        <textarea id="geminiInput" placeholder="Escribe tu mensaje aquí..." rows="3"></textarea>
-        <button id="geminiSend">Enviar</button>
-      </div>
-      <div id="geminiOutput"></div>
-    </section>
-  </main>
+  <!-- Chatbot Section -->
+  <section id="chatbot-container">
+    <h2>AI Safety Assistant</h2>
+    <iframe src="https://claribelgilsosa23-your-safe-taxi.hf.space" frameborder="0"></iframe>
+  </section>
 
-  <footer>
-    <p>© 2025 Safe Taxi — Developed to protect what matters most</p>
-    <p>Created by <a href="https://github.com/Claribel-Gilsosa" target="_blank">Claribel Gil Sosa</a></p>
-  </footer>
+  <!-- Google Translate -->
+  <div id="google_translate_element"></div>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Initialize Map
-    const map = L.map('map').setView([18.5, -69.9], 8);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+</main>
 
-    // Real-time location tracking
-    if (navigator.geolocation) {
-      navigator.geolocation.watchPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          L.marker([lat, lon]).addTo(map)
-            .bindPopup('Your current location')
-            .openPopup();
-          map.setView([lat, lon], 13);
-        },
-        () => { alert("Unable to get your current location."); }
-      );
-    } else {
-      alert("Geolocation is not supported by this browser.");
-    }
+<footer>
+  <p>© 2025 Safe Taxi — Developed to protect what matters most</p>
+  <p>Created by <a href="https://github.com/Claribel-Gilsosa" target="_blank">Claribel Gil Sosa</a></p>
+</footer>
 
-    // Emergency button logic
-    const alarm = document.getElementById("alarm");
-    document.getElementById("emergencyBtn").addEventListener("click", () => {
-      alarm.play();
-      alert("Emergency alert activated! Authorities have been notified.");
-    });
-  </script>
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Initialize Map
+  const map = L.map('map').setView([18.5, -69.9], 8);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
 
-  <!-- Gemini API Chat Script -->
-  <script>
-    const geminiApiKey = "AIzaSyCkqCF6x3ppDhgm2HVC96qm4m74T0MeHNk"; // tu clave
-    const geminiSendBtn = document.getElementById("geminiSend");
-    const geminiInput = document.getElementById("geminiInput");
-    const geminiOutput = document.getElementById("geminiOutput");
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        L.marker([lat, lon]).addTo(map).bindPopup('Your current location').openPopup();
+        map.setView([lat, lon], 13);
+      },
+      () => { alert("Unable to get your current location."); }
+    );
+  } else {
+    alert("Geolocation not supported by this browser.");
+  }
 
-    async function sendGeminiMessage(message) {
-      try {
-        const response = await fetch("https://gen.googleapis.com/v1beta2/projects/gen-lang-client-0479254864:generateMessage", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${geminiApiKey}`
-          },
-          body: JSON.stringify({
-            prompt: message,
-            model: "gemini-1",
-            temperature: 0.7
-          })
-        });
+  // Emergency button
+  const alarm = document.getElementById("alarm");
+  document.getElementById("emergencyBtn").addEventListener("click", () => {
+    alarm.play();
+    alert("Emergency alert activated!");
+  });
 
-        const data = await response.json();
-        const answer = data.candidates?.[0]?.content || "No response";
-        const p = document.createElement("p");
-        p.textContent = "Gemini: " + answer;
-        geminiOutput.appendChild(p);
-        geminiOutput.scrollTop = geminiOutput.scrollHeight;
-      } catch (err) {
-        console.error(err);
-        const p = document.createElement("p");
-        p.textContent = "Error al contactar Gemini API";
-        geminiOutput.appendChild(p);
+  // Calendar
+  const calendarBody = document.querySelector("#calendar tbody");
+  const monthYear = document.getElementById("monthYear");
+  const prevMonthBtn = document.getElementById("prevMonth");
+  const nextMonthBtn = document.getElementById("nextMonth");
+  let today = new Date();
+  let currentMonth = today.getMonth();
+  let currentYear = today.getFullYear();
+
+  function renderCalendar(month, year) {
+    calendarBody.innerHTML = "";
+    monthYear.textContent = `${year}-${month+1}`;
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month+1, 0).getDate();
+    let row = document.createElement("tr");
+    for(let i=0;i<firstDay;i++){ row.appendChild(document.createElement("td")); }
+    for(let d=1; d<=daysInMonth; d++){
+      if(row.children.length === 7){
+        calendarBody.appendChild(row);
+        row = document.createElement("tr");
       }
+      const cell = document.createElement("td");
+      cell.textContent = d;
+      row.appendChild(cell);
     }
+    calendarBody.appendChild(row);
+  }
 
-    geminiSendBtn.addEventListener("click", () => {
-      const message = geminiInput.value.trim();
-      if(message){
-        const p = document.createElement("p");
-        p.textContent = "Tú: " + message;
-        geminiOutput.appendChild(p);
-        geminiOutput.scrollTop = geminiOutput.scrollHeight;
-        geminiInput.value = "";
-        sendGeminiMessage(message);
-      }
-    });
-  </script>
+  prevMonthBtn.addEventListener("click", () => {
+    currentMonth--;
+    if(currentMonth<0){ currentMonth=11; currentYear--; }
+    renderCalendar(currentMonth,currentYear);
+  });
+
+  nextMonthBtn.addEventListener("click", () => {
+    currentMonth++;
+    if(currentMonth>11){ currentMonth=0; currentYear++; }
+    renderCalendar(currentMonth,currentYear);
+  });
+
+  renderCalendar(currentMonth,currentYear);
+
+  // Pickup Form
+  const pickupForm = document.getElementById("pickupForm");
+  const pickupList = document.getElementById("pickupList");
+
+  pickupForm.addEventListener("submit", e=>{
+    e.preventDefault();
+    const name = document.getElementById("pickupName").value;
+    const time = document.getElementById("pickupTime").value;
+    const li = document.createElement("li");
+    li.textContent = `${name} - ${time}`;
+    pickupList.appendChild(li);
+    pickupForm.reset();
+  });
+</script>
+
+<!-- Google Translate Script -->
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 </html>
