@@ -70,42 +70,42 @@
     <audio id="alarm" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
   </section>
 
-  <!-- Pickup Calendar Section -->
-  <section id="pickupCalendar">
-    <h2>Programar tu Pickup</h2>
-    <div id="calendarContainer">
-      <div id="calendarHeader">
-        <button id="prevMonth">«</button>
-        <span id="monthYear"></span>
-        <button id="nextMonth">»</button>
-      </div>
-      <table id="calendarTable">
-        <thead>
-          <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+  <!-- Pickup Calendar Section -->  
+<section id="pickupCalendar">  
+  <h2>Schedule Your Pickup</h2>  
+  <div id="calendarContainer">  
+    <div id="calendarHeader">  
+      <button id="prevMonth">«</button>  
+      <span id="monthYear"></span>  
+      <button id="nextMonth">»</button>  
+    </div>  
+    <table id="calendarTable">  
+      <thead>  
+        <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>  
+      </thead>  
+      <tbody></tbody>  
+    </table>  
+  </div>  
 
-    <div id="taxiInfo">
-      <h3>Información de los taxistas</h3>
-      <p>Los taxistas trabajan en turnos de 8 horas, tienen formación en atención al cliente y carisma para un viaje seguro y agradable. Siempre se aseguran de que los pasajeros se sientan cómodos y protegidos.</p>
-      <button id="boardBtn">Aborde</button>
-      <button id="disembarkBtn">Desaborde</button>
-      <p id="boardTime"></p>
-      <p id="disembarkTime"></p>
-    </div>
+  <div id="taxiInfo">  
+    <h3>Driver Information</h3>  
+    <p>Taxi drivers work 8-hour shifts, are trained in customer service, and have a friendly demeanor to ensure a safe and pleasant ride. They always make sure passengers feel comfortable and protected.</p>  
+    <button id="boardBtn">Board</button>  
+    <button id="disembarkBtn">Disembark</button>  
+    <p id="boardTime"></p>  
+    <p id="disembarkTime"></p>  
+  </div>  
 
-    <div id="addPickup">
-      <h3>Agregar Pickup</h3>
-      <form id="pickupForm">
-        <input type="text" id="pickupName" placeholder="Tu nombre" required />
-        <input type="time" id="pickupTime" required />
-        <button type="submit">Agregar</button>
-      </form>
-      <ul id="pickupList"></ul>
-    </div>
-  </section>
+  <div id="addPickup">  
+    <h3>Add Pickup</h3>  
+    <form id="pickupForm">  
+      <input type="text" id="pickupName" placeholder="Your Name" required />  
+      <input type="time" id="pickupTime" required />  
+      <button type="submit">Add</button>  
+    </form>  
+    <ul id="pickupList"></ul>  
+  </div>  
+</section>
 <!-- Full Information Section with Modern Design -->
 <section id="infoSection">
   <h2 style="text-align:center; color:#007bff; margin-bottom:2rem;">How to Use Safe Taxi</h2>
